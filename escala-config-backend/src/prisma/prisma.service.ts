@@ -5,14 +5,17 @@ import { PrismaClient } from '@prisma/client';
 export class PrismaService extends PrismaClient
   implements OnModuleInit {
 
+  constructor() {
+    super({
+      datasources: {
+        db: {
+          url: process.env.DATABASE_URL,
+        },
+      },
+    });
+  }
+
   async onModuleInit() {
     await this.$connect();
   }
 }
-
-@Module({
-    providers: [PrismaService],
-    exports: [PrismaService],
-  })
-  export class PrismaModule {}
-  

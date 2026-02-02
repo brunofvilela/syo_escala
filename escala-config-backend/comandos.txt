@@ -1,0 +1,5 @@
+Abra o Prisma Studio:
+npx prisma studio
+
+Back-end
+npm run start:dev
