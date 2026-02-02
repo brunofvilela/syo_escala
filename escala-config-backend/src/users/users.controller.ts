@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, ParseIntPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -6,7 +6,7 @@ export class UsersController {
   constructor(private service: UsersService) {}
 
   @Post()
-  create(@Body() body) {
+  create(@Body() body: any) {
     return this.service.create(body);
   }
 
@@ -14,4 +14,10 @@ export class UsersController {
   findAll() {
     return this.service.findAll();
   }
+
+  @Get(':id')
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.service.findOne(id);
+  }
+  
 }

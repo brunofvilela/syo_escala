@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
-import { EscalasService } from './escalas.service';
 import { EscalasController } from './escalas.controller';
+import { EscalasService } from './escalas.service';
+import { PrismaModule } from '../prisma/prisma.module';
 
 @Module({
+  imports: [PrismaModule], // 👈 ISSO resolve o erro
+  controllers: [EscalasController],
   providers: [EscalasService],
-  controllers: [EscalasController]
 })
 export class EscalasModule {}
